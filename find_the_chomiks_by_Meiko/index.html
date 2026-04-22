@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find the Chomiks</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <header>
+            <h1>Find the Chomiks</h1>
+            <div id="nav-buttons">
+                <button id="areas-toggle-btn">Areas</button>
+                <div id="area-buttons-container" class="hidden">
+                    <button id="spawn-btn" class="area-btn active">Spawn</button>
+                    <button id="desert-btn" class="area-btn">Desert</button>
+                    <button id="forest-btn" class="area-btn">Forest</button>
+                    <button id="graveyard-btn" class="area-btn">Graveyard</button>
+                    <button id="house-btn" class="area-btn">House</button>
+                    <button id="retro-btn" class="area-btn">Retro</button>
+                    <button id="trash-btn" class="area-btn">Trash</button>
+                    <button id="school-btn" class="area-btn">School</button>
+                </div>
+                <button id="dex-btn">ChomikDex</button>
+                <button id="changelog-btn">Changelog</button>
+            </div>
+        </header>
+
+        <main id="game-area-container">
+            <div id="Spawn" class="game-area active">
+                <!-- Chomiks for Spawn will be added here by JS -->
+            </div>
+            <div id="Desert" class="game-area">
+                <!-- Desert content will be added by JS -->
+            </div>
+            <div id="Forest" class="game-area">
+                <h2 class="area-title">Forest</h2>
+                <p class="placeholder">Nothing here yet...</p>
+            </div>
+            <div id="Graveyard" class="game-area">
+                <h2 class="area-title">Graveyard</h2>
+                <p class="placeholder">Nothing here yet...</p>
+            </div>
+            <div id="House" class="game-area">
+                <!-- House content will be added by JS -->
+            </div>
+            <div id="Retro" class="game-area">
+                <!-- Retro content will be added by JS -->
+            </div>
+             <div id="Trash" class="game-area">
+                <!-- Trash content will be added by JS -->
+            </div>
+            <div id="School" class="game-area">
+                <h2 class="area-title">School</h2>
+                <p class="placeholder">Nothing here yet...</p>
+            </div>
+            <div id="Ssyba Tsyhtema" class="game-area">
+                <!-- Ssyba Tsyhtema content will be added by JS -->
+            </div>
+            <div id="The Gateway" class="game-area">
+                <!-- Simon game will be added by JS -->
+            </div>
+            <div id="Secret" class="game-area">
+                <!-- Secret area content will be added by JS -->
+            </div>
+            <div id="The Blackscale Distortion" class="game-area">
+                <!-- Blackscale Distortion content will be added by JS -->
+            </div>
+            <div id="Secret 2" class="game-area">
+                <!-- Secret 2 content will be added by JS -->
+            </div>
+            <div id="OBBY OBBY OBBY OBBY OBBY OBBY OBBY OBBY OBBY OBBY OBBY OBBY OBBY OBBY OBBY OBBY" class="game-area">
+                <!-- OBBY area content will be added by JS -->
+            </div>
+        </main>
+
+        <div id="notification"></div>
+    </div>
+
+    <div id="chomikdex-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>ChomikDex</h2>
+            <div id="dex-counter"></div>
+            <div id="dex-controls">
+                <div class="dex-control-row">
+                    <label for="dex-sort-select">Sort:</label>
+                    <select id="dex-sort-select">
+                        <option value="none">None</option>
+                        <option value="easiest">Easiest to Hardest</option>
+                        <option value="hardest">Hardest to Easiest</option>
+                    </select>
+                </div>
+                <div class="dex-control-row">
+                    <label for="dex-search-mode">Filter mode:</label>
+                    <select id="dex-search-mode">
+                        <option value="name">Search by name</option>
+                        <option value="description">Search by description</option>
+                        <option value="hint">Search by hint</option>
+                    </select>
+                </div>
+                <div class="dex-control-row">
+                    <label for="dex-search-input">Search:</label>
+                    <input type="text" id="dex-search-input" placeholder="Type to search..." />
+                </div>
+                <!-- New: special chomiks admin button -->
+                <div class="dex-control-row">
+                    <button id="dex-special-btn" type="button">Show special chomiks</button>
+                </div>
+            </div>
+            <div id="dex-view">
+                <div id="dex-list">
+                    <!-- Chomik list will be populated by JS -->
+                </div>
+                <div id="dex-details">
+                    <p>Select a Chomik to see its details.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="computer-modal" class="modal">
+        <div class="modal-content" id="computer-screen">
+            <span class="close-button" id="computer-close-btn">&times;</span>
+            <div id="computer-view">
+                <!-- Computer content will be populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <div id="changelog-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Changelog</h2>
+            <div id="changelog-content">
+                <!-- Changelog entries will be populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <script type="importmap">
+    {
+      "imports": {
+        "canvas-confetti": "https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.module.mjs"
+      }
+    }
+    </script>
+    <script src="script.js" type="module"></script>
+
+    <!-- Background music toggle button -->
+    <button id="music-toggle-btn">Mute Music</button>
+</body>
+</html>

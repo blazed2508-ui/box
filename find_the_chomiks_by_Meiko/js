@@ -1,0 +1,88 @@
+// ... existing code ...
+const notificationEl = document.getElementById('notification');
+// Modals
+const dexModal = document.getElementById('chomikdex-modal');
+// ... existing code ...
+const areaButtonsContainer = document.getElementById('area-buttons-container');
+// New: special chomiks button
+const dexSpecialBtn = document.getElementById('dex-special-btn');
+// New: background music toggle button
+const musicToggleBtn = document.getElementById('music-toggle-btn');
+
+// Special ChomikDex mode + current user
+let specialDexMode = false;
+// ... existing code ...
+
+function saveProgress() {
+    localStorage.setItem('foundChomiks', JSON.stringify(Array.from(foundChomiks)));
+    // ... existing code ...
+    localStorage.setItem('emoQuestCompleted', emoQuestCompleted);
+    // New: save music mute state
+    localStorage.setItem('bgMusicMuted', bgMusicMuted);
+}
+
+function loadProgress() {
+    const saved = localStorage.getItem('foundChomiks');
+    // ... existing code ...
+    const savedEmoQuestCompleted = localStorage.getItem('emoQuestCompleted');
+    if (savedEmoQuestCompleted) emoQuestCompleted = JSON.parse(savedEmoQuestCompleted);
+
+    // New: load music mute state
+    const savedMusicMuted = localStorage.getItem('bgMusicMuted');
+    if (savedMusicMuted) bgMusicMuted = JSON.parse(savedMusicMuted);
+}
+
+function init() {
+    loadProgress();
+
+    // Fetch current user for Avaxus admin detection
+    (async () => {
+        // ... existing code ...
+    })();
+
+    if (ssybaRealmUnlocked && !document.getElementById('ssyba tsyhtema-btn')) {
+        // ... existing code ...
+    }
+    
+    if (foundChomiks.has('actual_chohio')) {
+        addSecretAreaButton();
+    }
+    if (youJoinedQuest.stage >= 1) {
+        addObbyAreaButton();
+    }
+
+    renderChomiks();
+    switchArea('Spawn'); // Start at spawn
+
+    // New: set up background music
+    try {
+        bgMusic = new Audio('/ytmp3free.cc_find-the-chomiks-ost-083-goofy-youtubemp3free.org.mp3');
+        bgMusic.loop = true;
+        bgMusic.muted = bgMusicMuted;
+        bgMusic.volume = 0.6;
+        bgMusic.play().catch(() => {
+            // Autoplay might be blocked; user can still toggle with the button
+        });
+    } catch (e) {
+        console.warn('Failed to initialize background music:', e);
+    }
+
+    // New: initialize music toggle button text and behavior
+    if (musicToggleBtn) {
+        musicToggleBtn.textContent = bgMusicMuted ? 'Unmute Music' : 'Mute Music';
+        musicToggleBtn.onclick = () => {
+            if (!bgMusic) return;
+            bgMusicMuted = !bgMusicMuted;
+            bgMusic.muted = bgMusicMuted;
+            musicToggleBtn.textContent = bgMusicMuted ? 'Unmute Music' : 'Mute Music';
+            saveProgress();
+            // If user unmutes and audio was never started due to autoplay, try to play
+            if (!bgMusicMuted) {
+                bgMusic.play().catch(() => {});
+            }
+        };
+    }
+}
+
+init();
+
